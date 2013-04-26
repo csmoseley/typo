@@ -23,5 +23,5 @@ public/cache/*
 .rbenv-version
 bin/
 .bundle/
-db/development
-db/test
+db/db_development
+db/db_test
