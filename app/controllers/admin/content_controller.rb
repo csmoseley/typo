@@ -8,7 +8,7 @@ class Admin::ContentController < Admin::BaseController
 
 	def merge_with
 		article = Article.find_by_id(params[:id])
-		article.merge_articles(params[:merge_with])
+		article.merge_with(params[:merge_with])
 		flash[:notice] = _("Articles Merged")
 		redirect_to :action => :edit, :id => params[:id]
 	end 
