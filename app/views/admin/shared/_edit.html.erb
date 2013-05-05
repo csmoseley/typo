@@ -9,9 +9,9 @@
 <% if @article.id and current_user.admin? %>
     <h4>Merge Articles</h4>
 <!-- basically yanked directally from Documentation: --->    
-		<%= form_tag("/search", :method => "get") do %>
+		<%= form_tag(:action => "merge_with", :id => @article.id) do %>
 		<%= label_tag("merge_with", "Article ID") %>
-		<%= text_field_tag("merge_with") %><br>
+		<%= text_field_tag("mergefield") %><br>
 		<%= submit_tag("Merge") %>
 		<% end %> 
 <% end %>

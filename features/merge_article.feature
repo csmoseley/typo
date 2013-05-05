@@ -12,7 +12,7 @@ Feature: Create Blog
     And I press "Publish"
 		When I am on the edit page
     And I should see "Merge Articles"
-		And I fill in "2" for "merge_with"
+		And I fill in "6" for "mergefield"
 		Then I press "Merge"
 		When I go to the home page
 		And I follow "Hello World!"
