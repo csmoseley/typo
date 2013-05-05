@@ -467,7 +467,7 @@ class Article < Content
     return from..to
   end
 
-	def merge_with(mergeid)
+	def self.merge_with(mergeid)
 		mergetarget = Article.find(mergeid)
 		self.body = self.body + mergetarget.body
 		self.comments << mergetarget.comments
