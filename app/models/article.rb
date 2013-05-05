@@ -409,7 +409,6 @@ class Article < Content
 		self.body = self.body + mergetarget.body
 		self.comments << mergetarget.comments
 		self.save! # This should keep comments from disappearing right?
-		mergetarget.destroy
 		return true
 	end
 
