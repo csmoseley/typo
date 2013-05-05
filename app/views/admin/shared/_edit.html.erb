@@ -2,5 +2,17 @@
 <%= form_tag(form_action, :id => "#{form_type}_form", :enctype => "multipart/form-data", :class => className) do %>
 
   <%= render :partial => "form" %>
+	
 
 <% end %>
+<!-- Homework 5 stuff -->
+<% if @article.id and current_user.admin? %>
+    <h4>Merge Articles</h4>
+<!-- basically yanked directally from Documentation: --->    
+		<%= form_tag("/search", :method => "get") do %>
+		<%= label_tag("merge_with", "Article ID") %>
+		<%= text_field_tag("merge_with") %><br>
+		<%= submit_tag("Merge") %>
+		<% end %> 
+<% end %>
+

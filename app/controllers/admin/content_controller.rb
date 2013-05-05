@@ -6,6 +6,12 @@ class Admin::ContentController < Admin::BaseController
 
   cache_sweeper :blog_sweeper
 
+	def merge_with
+		article.merge_with(params[:merge_with])
+		flash[:notice] = _("Articles Merged")
+		redirect_to :action => :view, :id => params[:id]
+	end 
+
   def auto_complete_for_article_keywords
     @items = Tag.find_with_char params[:article][:keywords].strip
     render :inline => "<%= raw auto_complete_result @items, 'name' %>"
@@ -193,7 +199,7 @@ class Admin::ContentController < Admin::BaseController
       raise "I don't know how to tidy up action: #{params[:action]}"
     end
   end
-
+	
   def destroy_the_draft
     Article.all(:conditions => { :parent_id => @article.id }).map(&:destroy)
   end

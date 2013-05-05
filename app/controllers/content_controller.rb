@@ -4,6 +4,12 @@ class ContentController < ApplicationController
       @request_time = Time.now
     end
 
+		def merge_with
+			article.merge_with(params[:merge_with])
+			flash[:notice] = _("Articles Merged")
+			redirect_to :action => :view, :id => params[:id]
+		end 
+
     def after(controller)
        future_article =
          Article.find(:first,
