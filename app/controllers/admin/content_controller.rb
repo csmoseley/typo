@@ -8,9 +8,13 @@ class Admin::ContentController < Admin::BaseController
 
 	def merge_with
 		article = Article.find_by_id(params[:id])
-		article.merge_with(params[:merge_with])
-		flash[:notice] = _("Articles Merged")
-		redirect_to :action => :edit, :id => params[:id]
+		if article.merge_with(params[:merge_with])
+      flash[:notice] = _("Articles Merged")
+			redirect_to :action => :edit, :id => params[:id]
+    else
+      flash[:notice] = _("Articles couldn't be merged")
+      redirect_to :action => :edit, :id => params[:id]
+    end
 	end 
 
   def auto_complete_for_article_keywords
