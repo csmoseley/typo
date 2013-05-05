@@ -403,6 +403,15 @@ class Article < Content
   def password_protected?
     not password.blank?
   end
+	def merge_articles(mergeid)
+		mergetarget = Article.find(mergeid)
+		self.body = self.body + mergetarget.body
+		self.comments << mergetarget.comments
+		self.save! # This should keep comments from disappearing right?
+
+		mergetarget.destroy
+		return true
+	end
 
   def add_comment(params)
     comments.build(params)
@@ -466,14 +475,4 @@ class Article < Content
     to = to - 1 # pull off 1 second so we don't overlap onto the next day
     return from..to
   end
-
-	def merge_articles(mergeid)
-		mergetarget = Article.find(mergeid)
-		self.body = self.body + mergetarget.body
-		self.comments << mergetarget.comments
-		self.save! # This should keep comments from disappearing right?
-
-		mergetarget.destroy
-		return true
-	end
 end
