@@ -408,8 +408,9 @@ class Article < Content
 		mergetarget = Article.find(mergeid)
 		self.body = self.body + mergetarget.body
 		self.comments << mergetarget.comments
-		mergetarget = Article.find(mergeid) # this will!
 		self.save! # This should keep comments from disappearing right? - wrong.
+		mergetarget = Article.find(mergeid) # this will!
+		mergetarget.destroy
 		return true
 	end
 
